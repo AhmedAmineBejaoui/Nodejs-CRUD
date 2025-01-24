@@ -26,13 +26,13 @@
     <link rel="stylesheet" href="./css/myStyle.css" />
   </head>
   <body>
-    <%- include('./Components/dark-light.ejs') %>
+    <%- include('./components/dark-light.ejs') %>
 
     <main class="d-flex flex-nowrap">
-      <%- include('./Components/sidebar.ejs', {currentPage: "index"}) %>
+      <%- include('./components/sidebar.ejs', {currentPage: "index"}) %>
 
       <section class="w-100">
-        <%- include('./Components/navbar.ejs') %>
+        <%- include('./components/navbar.ejs') %>
 
         <% if (arr.length === 0) { %>
         <h1 style="text-align: center; margin-top: 4rem;">No data available</h1>
