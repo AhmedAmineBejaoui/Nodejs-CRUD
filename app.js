@@ -130,10 +130,14 @@ app.delete("/edit/:id", (req, res) => {
 
 // ========= MONGODB CONNECTION ==========
 
+const mongoUri = process.env.MONGODB_URI;
+if (!mongoUri) {
+  console.error("MONGODB_URI is required. Set it in the environment before starting the server.");
+  process.exit(1);
+}
+
 mongoose
-  .connect(
-    "mongodb+srv://bejaouiahmed053:aj6TvCOCB4bUh2Iq@crud.uyfxo.mongodb.net/all-data?retryWrites=true&w=majority&appName=CRUD"
-  )
+  .connect(mongoUri)
   .then(() => {
     app.listen(port, () => {
       console.log(`Server running at: http://localhost:${port}/`);
