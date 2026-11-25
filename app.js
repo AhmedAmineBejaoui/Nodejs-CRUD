@@ -130,10 +130,12 @@ app.delete("/edit/:id", (req, res) => {
 
 // ========= MONGODB CONNECTION ==========
 
-mongoose
-  .connect(
-    "mongodb+srv://bejaouiahmed053:aj6TvCOCB4bUh2Iq@crud.uyfxo.mongodb.net/all-data?retryWrites=true&w=majority&appName=CRUD"
-  )
+if (!process.env.MONGODB_URI) {
+  console.error("MONGODB_URI is required. Set it before starting the application.");
+  process.exit(1);
+}
+
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     app.listen(port, () => {
       console.log(`Server running at: http://localhost:${port}/`);
@@ -424,7 +426,7 @@ mongoose
 // // MongoDB connection
 // mongoose
 //   .connect(
-//     "mongodb+srv://bejaouiahmed053:aj6TvCOCB4bUh2Iq@crud.uyfxo.mongodb.net/all-data?retryWrites=true&w=majority&appName=CRUD"
+//     "process.env.MONGODB_URI"
 //   )
 //   .then(() => {
 //     // Start the server
