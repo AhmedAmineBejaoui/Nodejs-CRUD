@@ -130,10 +130,7 @@ app.delete("/edit/:id", (req, res) => {
 
 // ========= MONGODB CONNECTION ==========
 
-mongoose
-  .connect(
-    "mongodb+srv://bejaouiahmed053:aj6TvCOCB4bUh2Iq@crud.uyfxo.mongodb.net/all-data?retryWrites=true&w=majority&appName=CRUD"
-  )
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     app.listen(port, () => {
       console.log(`Server running at: http://localhost:${port}/`);
